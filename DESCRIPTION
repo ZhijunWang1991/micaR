@@ -1,0 +1,25 @@
+Package: micaR
+Type: Package
+Title: Elegant Scientific Visualization and Statistical Tools
+Version: 0.0.1
+Author: Zhijun (Michael)
+Maintainer: Zhijun <your@email.com>
+Description: A set of elegant and efficient tools for PCA, PLS-DA, heatmaps, ANOVA and scientific plotting.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.2
+Imports:
+    ggplot2,
+    dplyr,
+    ggpubr,
+    tidyr,
+    tibble,
+    factoextra,
+    mixOmics,
+    ComplexHeatmap,
+    rstatix,
+    broom,
+    patchwork,
+    scales,
+    magrittr
