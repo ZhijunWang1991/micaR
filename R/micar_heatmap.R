@@ -1,4 +1,4 @@
-#' heatmap_plot
+#' micar_heatmap
 #'
 #' Generate a heatmap for a numeric matrix or data frame, with optional row grouping annotation.
 #'
@@ -10,7 +10,7 @@
 #'
 #' @return A heatmap plot using ComplexHeatmap.
 #' @export
-heatmap_plot <- function(data, group = NULL, scale = TRUE, cluster_rows = TRUE, cluster_cols = TRUE) {
+micar_heatmap <- function(data, group = NULL, scale = TRUE, cluster_rows = TRUE, cluster_cols = TRUE) {
   if (!requireNamespace("ComplexHeatmap", quietly = TRUE)) {
     stop("Please install the 'ComplexHeatmap' package.")
   }

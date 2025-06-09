@@ -2,18 +2,20 @@
 % Please edit documentation in R/micar_theme.R
 \name{micar_theme}
 \alias{micar_theme}
-\title{micar_theme}
+\title{A Publication-Ready ggplot2 Theme Inspired by Nature Style}
 \usage{
-micar_theme(base_size = 14, base_family = "")
-}
-\arguments{
-\item{base_size}{Base font size. Default is 14.}
-
-\item{base_family}{Base font family. Use a Chinese-safe font like "SimHei" or "Arial Unicode MS" if needed.}
+micar_theme(base_size = 12, base_family = "sans")
 }
 \value{
 A ggplot2 theme object.
 }
 \description{
-A minimalist and publication-ready ggplot2 theme for scientific graphics.
+A Publication-Ready ggplot2 Theme Inspired by Nature Style
+}
+\examples{
+library(ggplot2)
+p <- ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
+  geom_boxplot() +
+  micar_theme()
+print(p)
 }
