@@ -2,20 +2,16 @@
 % Please edit documentation in R/micar_palette.R
 \name{micar_palette}
 \alias{micar_palette}
-\title{Get a Micar Color Palette}
+\title{micar_palette}
 \usage{
-micar_palette(palette = "nature", n = NULL, reverse = FALSE)
+micar_palette(name = "blue")
 }
 \arguments{
-\item{palette}{One of "nature", "cell", or "bw"}
-
-\item{n}{Number of colors to return (optional)}
-
-\item{reverse}{Reverse the color order}
+\item{name}{Name of the color theme: one of "blue", "red", "purple", "gray".}
 }
 \value{
-A character vector of HEX color codes
+A character vector of 3 colors: low, mid, high for gradient scales.
 }
 \description{
-Get a Micar Color Palette
+Returns a named color palette used in micaR plots.
 }

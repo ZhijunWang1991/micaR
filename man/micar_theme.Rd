@@ -2,20 +2,26 @@
 % Please edit documentation in R/micar_theme.R
 \name{micar_theme}
 \alias{micar_theme}
-\title{A Publication-Ready ggplot2 Theme Inspired by Nature Style}
+\title{MicaR ggplot2 Theme for Publication}
 \usage{
-micar_theme(base_size = 12, base_family = "sans")
+micar_theme(base_size = 14, base_family = "sans")
+}
+\arguments{
+\item{base_size}{Base font size. Default is \code{14}.}
+
+\item{base_family}{Base font family. Default is \code{"sans"}.}
 }
 \value{
 A ggplot2 theme object.
 }
 \description{
-A Publication-Ready ggplot2 Theme Inspired by Nature Style
+A custom ggplot2 theme designed for publication-ready scientific figures,
+inspired by the aesthetics of journals such as Nature. It provides
+minimalist styling with options to control base font size and family.
 }
 \examples{
 library(ggplot2)
-p <- ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
-  geom_boxplot() +
-  micar_theme()
-print(p)
+p <- ggplot(mtcars, aes(x = wt, y = mpg)) + geom_point()
+p + micar_theme()
+
 }

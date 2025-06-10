@@ -2,30 +2,27 @@
 % Please edit documentation in R/micar_heatmap.R
 \name{micar_heatmap}
 \alias{micar_heatmap}
-\title{micar_heatmap}
+\title{Heatmap of Correlation Matrix}
 \usage{
-micar_heatmap(
-  data,
-  group = NULL,
-  scale = TRUE,
-  cluster_rows = TRUE,
-  cluster_cols = TRUE
-)
+micar_heatmap(data, palette = "blue", limits = c(-1, 1), cluster = FALSE)
 }
 \arguments{
-\item{data}{A numeric matrix or data frame.}
+\item{data}{A data frame or tibble containing numeric variables.}
 
-\item{group}{Optional vector for row annotation (e.g., sample group).}
+\item{palette}{Character. Color palette name. Options: "blue", "red", "purple", "gray". Default is "blue".}
 
-\item{scale}{Logical. Whether to scale rows. Default is TRUE.}
+\item{limits}{Numeric vector of length 2 specifying the range of correlation coefficients. Default is c(-1, 1).}
 
-\item{cluster_rows}{Logical. Cluster rows? Default TRUE.}
-
-\item{cluster_cols}{Logical. Cluster columns? Default TRUE.}
+\item{cluster}{Logical. Whether to cluster rows and columns (default: FALSE).}
 }
 \value{
-A heatmap plot using ComplexHeatmap.
+A \code{ggplot} object showing the correlation heatmap.
 }
 \description{
-Generate a heatmap for a numeric matrix or data frame, with optional row grouping annotation.
+Computes the Pearson correlation matrix of numeric variables in the dataset and
+plots a heatmap using ggplot2 with a publication-ready theme.
+}
+\examples{
+micar_heatmap(iris[, 1:4])
+
 }

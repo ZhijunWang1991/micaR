@@ -1,14 +1,21 @@
+#' Stacked barplot
+#'
+#' Creates a stacked barplot from a data frame using ggplot2.
+#'
+#' @param data A data frame.
+#' @param x A character string for x-axis variable.
+#' @param y A character string for y-axis variable.
+#' @param group A character string for grouping variable (fill aesthetic).
+#'
+#' @inheritParams micar_grouped_barplot
+#' @return A ggplot2 object.
+#' @export
 micar_stacked_barplot <- function(data, x, y, group, title = NULL) {
-  library(ggplot2)
   x <- rlang::enquo(x)
   y <- rlang::enquo(y)
   group <- rlang::enquo(group)
 
-  p <- ggplot(data, aes(x = !!x, y = !!y, fill = !!group)) +
-    geom_bar(stat = "identity", position = "stack", color = "black") +
-    micar_theme() +
-    scale_fill_micar() +
-    labs(title = title, x = NULL, y = NULL) +
-    theme(legend.position = "right")
-  p
+  ggplot2::ggplot(data, ggplot2::aes(x = !!x, y = !!y, fill = !!group)) +
+    ggplot2::geom_bar(stat = "identity", color = "black") +
+    ggplot2::labs(title = title, x = NULL, y = NULL)
 }

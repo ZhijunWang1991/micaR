@@ -2,18 +2,18 @@
 % Please edit documentation in R/micar_legend.R
 \name{micar_legend}
 \alias{micar_legend}
-\title{Universal legend beautifier for ggplot2}
+\title{Custom Legend Theme}
 \usage{
-micar_legend(position = "right", base_size = 12)
+micar_legend(position = "right", title = "legend")
 }
 \arguments{
-\item{position}{Position of the legend: "top", "right", "bottom", "left"}
+\item{position}{Legend position.}
 
-\item{base_size}{Base font size for legend text}
+\item{title}{Title of the legend.}
 }
 \value{
-A ggplot2 theme layer
+A ggplot2 theme modification.
 }
 \description{
-Universal legend beautifier for ggplot2
+Custom Legend Theme
 }

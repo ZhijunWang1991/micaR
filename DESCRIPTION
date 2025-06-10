@@ -1,25 +1,17 @@
 Package: micaR
 Type: Package
-Title: Elegant Scientific Visualization and Statistical Tools
+Title: Publication-Quality Visualization Tools for Scientific Figures
 Version: 0.0.1
 Author: Zhijun (Michael)
-Maintainer: Zhijun <your@email.com>
-Description: A set of elegant and efficient tools for PCA, PLS-DA, heatmaps, ANOVA and scientific plotting.
-License: GPL-3
+Maintainer: Zhijun <your.email@example.com>
+Description: Provides high-quality, publication-ready visualizations, themes, and palettes tailored for scientific data presentation, inspired by top-tier journals such as Nature.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.2
 Imports:
     ggplot2,
     dplyr,
-    ggpubr,
     tidyr,
-    tibble,
-    factoextra,
-    mixOmics,
-    ComplexHeatmap,
-    rstatix,
-    broom,
-    patchwork,
-    scales,
-    magrittr
+    stats,
+    rlang
+RoxygenNote: 7.3.2

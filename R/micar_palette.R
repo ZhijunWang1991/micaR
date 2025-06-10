@@ -1,23 +1,23 @@
-#' Get a Micar Color Palette
+#' micar_palette
 #'
-#' @param palette One of "nature", "cell", or "bw"
-#' @param n Number of colors to return (optional)
-#' @param reverse Reverse the color order
+#' Returns a named color palette used in micaR plots.
 #'
-#' @return A character vector of HEX color codes
+#' @param name Name of the color theme: one of "blue", "red", "purple", "gray".
+#'
+#' @return A character vector of 3 colors: low, mid, high for gradient scales.
+#'
 #' @export
-micar_palette <- function(palette = "nature", n = NULL, reverse = FALSE) {
+micar_palette <- function(name = "blue") {
   palettes <- list(
-    nature = c("#E64B35", "#4DBBD5", "#00A087", "#3C5488", "#F39B7F", "#8491B4"),
-    cell   = c("#1F78B4", "#33A02C", "#6A3D9A", "#B2DF8A", "#A6CEE3", "#CAB2D6"),
-    bw     = gray.colors(8, start = 0.2, end = 0.8)
+    blue   = c("#2166AC", "#F7F7F7", "#B2182B"),
+    red    = c("#B2182B", "#F7F7F7", "#2166AC"),
+    purple = c("#762A83", "#F7F7F7", "#1B7837"),
+    gray   = c("#000000", "#F7F7F7", "#CCCCCC")
   )
 
-  pal <- palettes[[palette]]
-  if (is.null(pal)) stop("Unknown palette name.")
+  if (!name %in% names(palettes)) {
+    stop("Invalid palette name. Choose from: ", paste(names(palettes), collapse = ", "))
+  }
 
-  if (!is.null(n)) pal <- pal[seq_len(n)]
-
-  if (reverse) pal <- rev(pal)
-  return(pal)
+  return(palettes[[name]])
 }

@@ -2,17 +2,22 @@
 % Please edit documentation in R/scale_color_micar.R
 \name{scale_color_micar}
 \alias{scale_color_micar}
-\title{Discrete color scale using micar palettes}
+\title{Custom ggplot2 Color Scale using micar Palette}
 \usage{
-scale_color_micar(palette = "nature", reverse = FALSE, ...)
+scale_color_micar(palette = "blue", discrete = TRUE, reverse = FALSE, ...)
 }
 \arguments{
-\item{palette}{Palette name (e.g., "nature")}
+\item{palette}{Name of the palette to use: "blue", "red", "purple", "gray".}
 
-\item{reverse}{Reverse the color order}
+\item{discrete}{Logical. Whether the scale is discrete (default: TRUE).}
 
-\item{...}{Other arguments to scale_color_manual}
+\item{reverse}{Logical. Whether to reverse the color direction.}
+
+\item{...}{Other arguments passed to the underlying scale function.}
+}
+\value{
+A ggplot2 scale object.
 }
 \description{
-Discrete color scale using micar palettes
+Applies a discrete or continuous color scale using a predefined micar color palette.
 }

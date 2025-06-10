@@ -2,17 +2,22 @@
 % Please edit documentation in R/scale_fill_micar.R
 \name{scale_fill_micar}
 \alias{scale_fill_micar}
-\title{Discrete fill scale using micar palettes}
+\title{Custom ggplot2 Fill Scale using micar Palette}
 \usage{
-scale_fill_micar(palette = "nature", reverse = FALSE, ...)
+scale_fill_micar(palette = "blue", discrete = TRUE, reverse = FALSE, ...)
 }
 \arguments{
-\item{palette}{Palette name (e.g., "nature")}
+\item{palette}{Name of the palette to use: "blue", "red", "purple", "gray".}
 
-\item{reverse}{Reverse the color order}
+\item{discrete}{Logical. Whether the scale is discrete (default: TRUE).}
 
-\item{...}{Other arguments to scale_fill_manual}
+\item{reverse}{Logical. Whether to reverse the color direction.}
+
+\item{...}{Other arguments passed to the underlying scale function.}
+}
+\value{
+A ggplot2 scale object.
 }
 \description{
-Discrete fill scale using micar palettes
+Applies a discrete or continuous fill scale using a predefined micar color palette.
 }
