@@ -1,20 +1,16 @@
-#' Scatter Plot
+#' Scatter Plot with Optional Grouping and Coloring
 #'
-#' Creates a scatter plot using ggplot2 with optional color grouping and title.
+#' Creates a scatter plot using ggplot2 with optional grouping for color aesthetics.
 #'
-#' @param data A data frame.
-#' @param x A column name (unquoted) for the x-axis variable.
-#' @param y A column name (unquoted) for the y-axis variable.
-#' @param color Optional. A column name (unquoted) for grouping by color.
-#' @param title Optional. Plot title as a string.
+#' @param data A data.frame containing the data.
+#' @param x The x-axis variable (unquoted).
+#' @param y The y-axis variable (unquoted).
+#' @param color Optional grouping/coloring variable (unquoted). Default is NULL.
+#' @param title Optional plot title.
 #'
-#' @return A ggplot2 object.
-#'
-#' @examples
-#' micar_scatterplot(iris, Sepal.Length, Sepal.Width, color = Species, title = "Sepal Size")
-#'
-#' @importFrom ggplot2 ggplot aes geom_point labs
-#' @importFrom rlang enquo quo_is_null
+#' @return A ggplot2 object representing the scatter plot.
+#' @import ggplot2
+#' @importFrom rlang enquo quo_is_null !!
 #' @export
 micar_scatterplot <- function(data, x, y, color = NULL, title = NULL) {
   x <- rlang::enquo(x)
@@ -22,10 +18,18 @@ micar_scatterplot <- function(data, x, y, color = NULL, title = NULL) {
   color <- rlang::enquo(color)
 
   p <- ggplot2::ggplot(data, ggplot2::aes(x = !!x, y = !!y))
+
   if (!rlang::quo_is_null(color)) {
-    p <- p + ggplot2::aes(color = !!color)
+    p <- p + ggplot2::aes(color = !!color) +
+      ggplot2::geom_point(size = 3, alpha = 0.8)
+  } else {
+    p <- p + ggplot2::geom_point(size = 3, alpha = 0.8, color = "steelblue")
   }
 
-  p + ggplot2::geom_point(size = 3, alpha = 0.8) +
-    ggplot2::labs(title = title, x = NULL, y = NULL)
+  p <- p +
+    ggplot2::labs(title = title, x = NULL, y = NULL, color = NULL) +
+    ggplot2::theme_minimal(base_size = 14) +
+    ggplot2::theme(legend.position = ifelse(rlang::quo_is_null(color), "none", "right"))
+
+  return(p)
 }

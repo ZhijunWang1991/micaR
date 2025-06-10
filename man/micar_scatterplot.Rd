@@ -2,28 +2,24 @@
 % Please edit documentation in R/micar_scatterplot.R
 \name{micar_scatterplot}
 \alias{micar_scatterplot}
-\title{Scatter Plot}
+\title{Scatter Plot with Optional Grouping and Coloring}
 \usage{
 micar_scatterplot(data, x, y, color = NULL, title = NULL)
 }
 \arguments{
-\item{data}{A data frame.}
+\item{data}{A data.frame containing the data.}
 
-\item{x}{A column name (unquoted) for the x-axis variable.}
+\item{x}{The x-axis variable (unquoted).}
 
-\item{y}{A column name (unquoted) for the y-axis variable.}
+\item{y}{The y-axis variable (unquoted).}
 
-\item{color}{Optional. A column name (unquoted) for grouping by color.}
+\item{color}{Optional grouping/coloring variable (unquoted). Default is NULL.}
 
-\item{title}{Optional. Plot title as a string.}
+\item{title}{Optional plot title.}
 }
 \value{
-A ggplot2 object.
+A ggplot2 object representing the scatter plot.
 }
 \description{
-Creates a scatter plot using ggplot2 with optional color grouping and title.
-}
-\examples{
-micar_scatterplot(iris, Sepal.Length, Sepal.Width, color = Species, title = "Sepal Size")
-
+Creates a scatter plot using ggplot2 with optional grouping for color aesthetics.
 }
