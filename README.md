@@ -8,7 +8,7 @@
 
 ```r
 # 从 GitHub 安装最新开发版本：
-devtools::install_github("yourusername/micaR")
+devtools::install_github("ZhijunWang1991/micaR")
 ```
 
 ## 使用示例
