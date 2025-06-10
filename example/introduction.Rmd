@@ -65,7 +65,8 @@ print(p)
 
 ```{r}
 df <- iris
-p <- micar_scatterplot(df, x = Sepal.Length, y = Sepal.Width, color = Species, title = "Scatterplot with Groups")
+p <- micar_scatterplot(df, x = Sepal.Length, y = Sepal.Width, color = Species, title = "Scatterplot with Groups")+
+  micar_theme()
 print(p)
 ```
 
@@ -78,7 +79,8 @@ df <- data.frame(
   value = c(2, 5, 3, 4, 6, 2, 3, 4, 5)
 )
 
-p <- micar_grouped_barplot(df, x = category, y = value, group = subgroup, title = "Grouped Barplot")
+p <- micar_grouped_barplot(df, x = category, y = value, group = subgroup, title = "Grouped Barplot")+
+  scale_fill_micar()
 print(p)
 ```
 
@@ -91,7 +93,7 @@ df <- data.frame(
   value = c(2, 5, 3, 4, 6, 2, 3, 4, 5)
 )
 
-p <- micar_stacked_barplot(df, x = category, y = value, group = subgroup, title = "Stacked Barplot")
+p <- micar_stacked_barplot(df, x = category, y = value, group = subgroup, title = "Stacked Barplot")+micar_theme()
 print(p)
 ```
 
@@ -100,7 +102,8 @@ print(p)
 
 ```{r}
 data(iris)
-p <- micar_heatmap(iris[, 1:4])
+p <- micar_heatmap(iris[, 1:4])+micar_theme() +
+  labs(title = "Heatmap of Iris Dataset Features")
 print(p)
 ```
 
