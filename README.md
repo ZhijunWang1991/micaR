@@ -1,36 +1,21 @@
 
 # micaR
 
-`micaR` 是一个专为科研绘图设计的 R 包，基于 `ggplot2`，提供符合SCI期刊出版要求的高质量主题、配色及多种常用统计图形绘制函数。适合快速生成美观、专业的科研图表。
-
-## 主要功能
-
-| 函数名                  | 功能简介                                |
-|-------------------------|---------------------------------------|
-| `micar_pca()`           | 主成分分析(PCA)并绘制得分图，支持分组与置信椭圆 |
-| `micar_barplot()`       | 基础柱状图，支持误差条                  |
-| `micar_boxplot()`       | 箱线图，展示分布和异常值                |
-| `micar_scatterplot()`   | 散点图，支持分组                      |
-| `micar_grouped_barplot()` | 分组柱状图，比较多个类别的数值          |
-| `micar_stacked_barplot()` | 堆积柱状图，展示类别组成比例            |
-| `micar_heatmap()`       | 热图，基于变量相关性绘制                |
-| `scale_fill_micar()`    | 专属填充色调色板                       |
-| `scale_color_micar()`   | 专属颜色调色板                        |
+`micaR` 是一个专为科研人员设计的 R 包，基于 `ggplot2`，提供符合 SCI 期刊出版要求的高质量数据可视化工具。包内函数涵盖主成分分析（PCA）、柱状图、箱线图、散点图、堆积柱状图、分组柱状图和热图，配有专属配色和主题，帮助您快速生成美观且专业的科研图表。
 
 
 ## 安装
 
 ```r
-# 开发中包安装示例
-# install.packages("devtools")
-devtools::install_github("yourname/micaR")
+# 从 GitHub 安装最新开发版本：
+devtools::install_github("yourusername/micaR")
 ```
 
 ## 使用示例
 
 ### 1. PCA 主成分分析绘图
 
-``` {r}
+```r
 library(micaR)
 library(ggplot2)
 
@@ -38,21 +23,15 @@ data(iris)
 iris_num <- iris[, 1:4]
 group <- iris$Species
 
-# 仅数值变量PCA，无分组
-p1 <- micar_pca(iris_num)
-print(p1)
-
-# 带分组和置信椭圆
-p2 <- micar_pca(iris_num, group_var = group, ellipse = TRUE)
-print(p2)
+p <- micar_pca(iris_num, group_var = group, ellipse = TRUE)
+print(p)
 ```
+![PCA示例图片](https://github.com/ZhijunWang1991/micaR/blob/main/example/p1.png)
 
-------------------------------------------------------------------------
 
-### 2. 柱状图
+### 2. 基础柱状图
 
-``` r
-# 简单柱状图
+```r
 df <- data.frame(
   group = c("A", "B", "C"),
   value = c(3, 5, 2)
@@ -61,72 +40,69 @@ df <- data.frame(
 p <- micar_barplot(df, x = group, y = value, title = "Basic Barplot")
 print(p)
 ```
-
-------------------------------------------------------------------------
+![基础柱状图示例图片](https://github.com/ZhijunWang1991/micaR/blob/main/example/p2.png)
 
 ### 3. 箱线图
 
-``` r
+```r
 df <- iris
 p <- micar_boxplot(df, x = Species, y = Sepal.Length, title = "Sepal Length by Species")
 print(p)
 ```
-
-------------------------------------------------------------------------
+![箱线图示例图片](https://github.com/ZhijunWang1991/micaR/blob/main/example/p3.png)
 
 ### 4. 散点图
 
-``` r
+```r
 df <- iris
-p <- micar_scatterplot(df, x = Sepal.Length, y = Sepal.Width, group = Species, title = "Scatterplot with Groups")
+p <- micar_scatterplot(df, x = Sepal.Length, y = Sepal.Width, color = Species, title = "Scatterplot with Groups")+
+  micar_theme()
 print(p)
 ```
-
-------------------------------------------------------------------------
+![散点图示例图片](https://github.com/ZhijunWang1991/micaR/blob/main/example/p4.png)
 
 ### 5. 分组柱状图
 
-``` r
+```r
 df <- data.frame(
-  category = rep(c("Cat1", "Cat2"), each = 2),
-  subgroup = rep(c("Sub1", "Sub2"), 2),
-  value = c(2, 5, 3, 4)
+  category = rep(c("Cat1", "Cat2", "Cat3"), each = 3),
+  subgroup = rep(c("Sub1", "Sub2", "Sub3"), times = 3),
+  value = c(2, 5, 3, 4, 6, 2, 3, 4, 5)
 )
 
-p <- micar_grouped_barplot(df, x = category, y = value, group = subgroup, title = "Grouped Barplot")
+p <- micar_grouped_barplot(df, x = category, y = value, group = subgroup, title = "Grouped Barplot")+
+  scale_fill_micar()
 print(p)
 ```
-
-------------------------------------------------------------------------
+![分组柱状图](https://github.com/ZhijunWang1991/micaR/blob/main/example/p5.png)
 
 ### 6. 堆积柱状图
 
-``` r
+```r
 df <- data.frame(
-  category = rep(c("Cat1", "Cat2"), each = 2),
-  subgroup = rep(c("Sub1", "Sub2"), 2),
-  value = c(2, 5, 3, 4)
+  category = rep(c("Cat1", "Cat2", "Cat3"), each = 3),
+  subgroup = rep(c("Sub1", "Sub2", "Sub3"), times = 3),
+  value = c(2, 5, 3, 4, 6, 2, 3, 4, 5)
 )
 
-p <- micar_stacked_barplot(df, x = category, y = value, fill = subgroup, title = "Stacked Barplot")
+p <- micar_stacked_barplot(df, x = category, y = value, group = subgroup, title = "Stacked Barplot")+micar_theme()
 print(p)
 ```
-
-------------------------------------------------------------------------
+![堆积柱状图](https://github.com/ZhijunWang1991/micaR/blob/main/example/p6.png)
 
 ### 7. 热图（基于相关性矩阵）
 
-``` r
+```r
 data(iris)
-p <- micar_heatmap(iris[, 1:4], title = "Correlation Heatmap of Iris")
+p <- micar_heatmap(iris[, 1:4])+micar_theme() +
+  labs(title = "Heatmap of Iris Dataset Features")
 print(p)
 ```
-
-------------------------------------------------------------------------
+![热图](https://github.com/ZhijunWang1991/micaR/blob/main/example/p7.png)
 
 ### 8. 自定义配色
 
-``` r
+```r
 library(ggplot2)
 
 my_colors <- micaR::micar_palette()
@@ -136,17 +112,9 @@ ggplot(mtcars, aes(x = factor(cyl), fill = factor(gear))) +
   scale_fill_micar() +
   labs(title = "Custom Palette with micaR")
 ```
-
-------------------------------------------------------------------------
+![配色展示](https://github.com/ZhijunWang1991/micaR/blob/main/example/p8.png)
 
 ## 主题与调色板
 
--   `micar_theme()` 提供简洁、符合SCI杂志审美的基础主题。
--   `scale_fill_micar()` 和 `scale_color_micar()` 是配套的调色板函数，颜色经过精心设计，确保可读性和美观。
-
-------------------------------------------------------------------------
-
-## 许可证
-
-MIT
-
+* `micar_theme()` 提供简洁、符合 SCI 杂志审美的基础主题。
+* `scale_fill_micar()` 和 `scale_color_micar()` 是配套的调色板函数，确保可读性和美观。
